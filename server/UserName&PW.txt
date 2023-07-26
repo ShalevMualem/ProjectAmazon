@@ -1,0 +1,12 @@
+ESHOP
+eshop123
+
+mongodb+srv://ESHOP:eshop123@cluster0.mzwkrkj.mongodb.net/?retryWrites=true&w=majority
+
+
+Compass:
+mongodb+srv://ESHOP:eshop123@cluster0.mzwkrkj.mongodb.net/
+
+
+
+

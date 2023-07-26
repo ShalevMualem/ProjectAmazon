@@ -1,12 +1,36 @@
-import logo from './logo.svg';
+
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
+import HomePage from './Pages/HomePage';
+import { BrowserRouter , Routes, Route } from 'react-router-dom';
+import NavBar from './Components/NavBar';
+import { ToastContainer } from'react-toastify';
+import { SignInPage } from './SignInPage/SignInPage';
+import { SignUpPage } from './SignUpPage/SignUpPage';
+import CartPage from './Pages/CartPage';
+import ShippingAddressPage from './Pages/ShippingAddressPage';
+import PaymentPage from './Pages/PaymentPage';
+import Placeorder from './Pages/PlaceOrderPage';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <a href="/">eShop</a>
-      </header>
+        <BrowserRouter>
+      <NavBar/>
+      <ToastContainer position="bottom-center" limit={5}/>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/signin" element={<SignInPage/>}/>
+          <Route path="/signup" element={<SignUpPage/>}/>
+          <Route path="/cart" element={<CartPage/>}/>
+          <Route path="/shipping" element={<ShippingAddressPage/>}/>
+          <Route path="/payment" element={<PaymentPage/>}/>
+          <Route path="/placeorder" element={<Placeorder/>}/>
+        </Routes>
+        </main>
+        </BrowserRouter>
+      
     </div>
   );
 }
