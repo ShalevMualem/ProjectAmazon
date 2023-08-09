@@ -3,6 +3,9 @@ import { Navbar, Container, Badge, NavDropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { USER_SIGNOUT } from "../Reducers/Actions";
+import SearchBox from "./SearchBox"; 
+import axios from "axios";
+import { AddToCartHandler } from "../Services/AddToCart";
 
 
 import "./NavBar.css";
@@ -10,15 +13,28 @@ import { Store } from "../Context/Store";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { state, dispatch: contextDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const signoutHandler = () => {
-    contextDispatch({type: USER_SIGNOUT})
+    ctxDispatch({type: USER_SIGNOUT})
   };
   const {
     cart,
     userInfo,
   } = state;
   const {cartItems} = cart;
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const handleDrop = async (event) => {
+    event.preventDefault();
+
+    const productId = event.dataTransfer.getData("text/plain");
+
+    const { data } = await axios.get(`/products/${productId}`);
+
+    await AddToCartHandler(data, cartItems, ctxDispatch);
+  };
   return (
     <header className="App-header">
       <Navbar bg="dark" variant="dark">
@@ -37,9 +53,13 @@ const NavBar = () => {
             </Navbar.Brand>
           </LinkContainer>
 
-          <nav className="d-flex mx-auto align-items-center">
-            Search Text :<input type="text" placeholder="Search..."></input>
-          </nav>
+          <nav
+              onDragOver={handleDragOver}
+              onDrop={handleDrop}
+              className="d-flex mx-auto align-items-center"
+            >
+              <SearchBox />
+            </nav>
 
           <Link to="/cart" className="nav-link me-4 ms-4">
             <i className="fas fa-shopping-cart text-white"></i>
@@ -47,7 +67,7 @@ const NavBar = () => {
             {cartItems.length > 0 && (
               <Badge pill bg="danger">
                 {" "}
-                {cartItems.reduce((acc, item) => acc + item.Quantity, 0)}
+                {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
               </Badge>
             )}
             </Link>

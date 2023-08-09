@@ -26,7 +26,7 @@ const reducer = (state, { type }) => {
 };
 const Placeorder = () => {
   const [{ loading }, dispatch] = useReducer(reducer, { loading: false });
-  const { state, disptach: ctxDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);
   const navigate = useNavigate();
   const { cart, userInfo } = state;
   const { paymentMethod } = cart;
@@ -35,6 +35,7 @@ const Placeorder = () => {
     try {
       e.preventDefault();
       dispatch({ type: GET_REQUEST });
+      console.log(cart);
       const { data } = await axios.post("/orders", {
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
@@ -60,7 +61,7 @@ const Placeorder = () => {
     }
   };
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON)/100;
-  cart.itemsPrice = round2(cart.cartItems.reduce((acc, item) => acc + item.price * item.Quantity, 0))
+  cart.itemsPrice = round2(cart.cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0))
   cart.taxPrice = round2(cart.itemsPrice *0.17);
   cart.shippingPrice = round2(cart.itemsPrice  > 50 ? cart.itemsPrice * 0.1 : cart.itemsPrice * 0.02);
   cart.totalPrice = round2(cart.itemsPrice + cart.shippingPrice + cart.taxPrice);

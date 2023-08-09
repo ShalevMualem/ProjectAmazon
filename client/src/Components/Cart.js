@@ -17,12 +17,12 @@ const Cart = ({cartItems,updateCartHandler , removeCartHandler}) => {
                                 <Link to={`/product/${item.token}`}>{item.title}</Link>
                             </Col>
                             <Col md={3}>
-                                <Button onClick={()=>updateCartHandler(item,item.Quantity -1)} variant='light'disabled={item.Quantity===1}>
+                                <Button onClick={()=>updateCartHandler(item,item.quantity -1)} variant='light'disabled={item.quantity===1}>
                                     <i className='fas fa-minus-circle'></i>
                                 </Button>
                                 {" "}
-                                <span>{item.Quantity}</span> {" "}
-                                <Button onClick={()=>updateCartHandler(item,item.Quantity +1)} variant='light'disabled={item.Quantity=== item.CountInStock}>
+                                <span>{item.quantity}</span> {" "}
+                                <Button onClick={()=>updateCartHandler(item,item.quantity +1)} variant='light'disabled={item.quantity=== item.CountInStock}>
                                     <i className='fas fa-plus-circle'></i>
                                 </Button> {" "}
                             </Col>

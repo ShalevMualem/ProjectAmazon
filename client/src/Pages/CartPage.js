@@ -20,16 +20,16 @@ const CartPage = () => {
   const CheckOutHandler = () => {
     navigate('/signin?redirect=/shipping')
   };
-  const updateCartHandler = async (item, Quantity) => {
+  const updateCartHandler = async (item, quantity) => {
     try{
         const {data} = await axios.get('/products/id/' + item._id)
     
-        if(data.countInStock < Quantity){
+        if(data.countInStock < quantity){
             toast.error('Out of Stock');
             return;
             
         }
-        ctxDispatch({type:ADD_TO_CART,payload:{...item,Quantity}})
+        ctxDispatch({type:ADD_TO_CART,payload:{...item,quantity}})
     }catch(error){
         ctxDispatch({type:GET_FAIL,payload:error.message})
     }

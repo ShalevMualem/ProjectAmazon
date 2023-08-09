@@ -11,6 +11,8 @@ import CartPage from './Pages/CartPage';
 import ShippingAddressPage from './Pages/ShippingAddressPage';
 import PaymentPage from './Pages/PaymentPage';
 import Placeorder from './Pages/PlaceOrderPage';
+import ProductPage from './Pages/ProductPage';
+import SearchPage from './Pages/SearchPage';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/shipping" element={<ShippingAddressPage/>}/>
           <Route path="/payment" element={<PaymentPage/>}/>
           <Route path="/placeorder" element={<Placeorder/>}/>
+          <Route path="/product/:token" element={<ProductPage/>}/>
+          <Route path="/search" element={<SearchPage/>}/>
         </Routes>
         </main>
         </BrowserRouter>

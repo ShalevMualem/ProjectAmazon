@@ -2,8 +2,8 @@ import React from "react";
 import { Card, ListGroup, Button } from "react-bootstrap";
 
 const Total = ({cartItems, checkoutHandler}) => {
-    const total =cartItems.reduce((acc, item) => acc + item.Quantity, 0)
-    const total2 = cartItems.reduce((acc, item) => acc + item.price * item.Quantity,0);
+    const total =cartItems.reduce((acc, item) => acc + item.quantity, 0)
+    const total2 = cartItems.reduce((acc, item) => acc + item.price * item.quantity,0);
     console.log(total);
     console.log(total2);
   return (

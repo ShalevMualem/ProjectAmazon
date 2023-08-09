@@ -93,8 +93,13 @@ productRouter.get(
             ...ratingfilter,
             ...pricefilter,
         }).sort(sortorder).skip((page - 1) * pageSize).limit(pageSize);
-        const countproducts = products.length;
-        res.send({products,page,countproducts,pages:Math.ceil(countproducts/pageSize)});
+        const countProducts = await Product.countDocuments({
+          ...queryfilter,
+          ...categoryfilter,
+          ...pricefilter,
+          ...pricefilter,
+        });
+        res.send({products,page,countProducts,pages:Math.ceil(countProducts/pageSize)});
   })
   
 );
