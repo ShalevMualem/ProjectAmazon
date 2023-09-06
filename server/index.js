@@ -7,6 +7,7 @@ import seedRouter from './Routes/seedRoutes.js';
 import {orderRouter} from './Routes/orderRoutes.js';
 import { productRouter } from './Routes/productRouter.js';
 dotenv.config();
+console.log("blalalalalalalalalalalalalalalalalal")
 
 const PORT = process.env.PORT || 5000;
 
