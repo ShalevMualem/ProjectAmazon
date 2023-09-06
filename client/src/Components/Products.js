@@ -7,7 +7,7 @@ const Products = ({ products = [] }) => {
   return (
     //<>
     <Row>
-      {products.map(
+      {products?.map(
         (product) => (
           <Col key={product.token} lg={3} md={4} sm={6} 
           className="mb-3">
