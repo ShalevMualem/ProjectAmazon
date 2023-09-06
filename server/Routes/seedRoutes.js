@@ -1,8 +1,8 @@
 import express from "express";
 
 import Product from "../Models/ProductModel.js";
-import User from "../models/UserModel.js";
-import Order from "../models/OrderModel.js";
+import User from "../Models/UserModel.js";
+import Order from "../Models/OrderModel.js";
 
 import data from "../data.js";
 
