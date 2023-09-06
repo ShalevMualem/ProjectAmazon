@@ -8,7 +8,7 @@ import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 import { StoreProvider } from './Context/Store';
 //axios.defaults.baseURL = "http://localhost:5000/api";
-axios.defaults.baseURL = process.env.REACT_APP_VAL ? `${process.env.REACT_APP_VAL}/api`: "http://localhost:5000/api";
+axios.defaults.baseURL = process.env.REACT_APP_VAL;
 console.log(process.env.REACT_APP_VAL);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
